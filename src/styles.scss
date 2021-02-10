@@ -1,10 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /*Sizes*/
-$ttt-default-size: 16px;
 $ttt-blue: #33CCFF;
 $ttt-red: #FF9966;
 
@@ -16,4 +14,6 @@ $ttt-red: #FF9966;
   color: $ttt-red;
 }
 
-
+.ttt-events-none {
+  pointer-events: none;
+}

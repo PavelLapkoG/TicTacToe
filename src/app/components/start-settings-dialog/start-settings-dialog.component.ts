@@ -56,4 +56,8 @@ export class StartSettingsDialogComponent implements OnInit {
     this.dialogRef.close();
     this.router.navigateByUrl('/');
   }
+
+  public playAgain(): void {
+    this.data.type = SETTINGS_DIALOG_TYPE.START;
+  }
 }

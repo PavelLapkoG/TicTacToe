@@ -1,16 +1,14 @@
-<div class="ttt-player-panel">
-  <ng-template [ngIf]="isFirstCurrentPlayer()">
-    <div class="ttt-player-1 ttt-cross">
-      <mat-icon class="ttt-vertical-align">close</mat-icon>
-      <span class="ttt-vertical-align text-uppercase">Player 1</span>
-    </div>
+<div class="d-flex justify-content-center m-3">
+  <ng-template [ngIf]="isFirstCurrentPlayer">
+    <mat-icon class="align-self-center ttt-cross">close</mat-icon>
+    <span class="align-self-center text-uppercase ttt-cross m-1">Player 1</span>
   </ng-template>
 
-  <ng-template [ngIf]="isSecondCurrentPlayer()">
-    <div class="ttt-player-2 ttt-zero">
-      <mat-icon class="ttt-vertical-align">radio_button_unchecked</mat-icon>
-      <span class="ttt-vertical-align text-uppercase">Player 2</span>
-    </div>
+  <ng-template [ngIf]="isSecondCurrentPlayer">
+    <mat-icon class="align-self-center ttt-zero">radio_button_unchecked</mat-icon>
+    <span class="align-self-center text-uppercase ttt-zero m-1">Player 2</span>
   </ng-template>
 </div>
+
+
 

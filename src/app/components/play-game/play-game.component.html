@@ -1,22 +1,12 @@
-<div class="row">
-  <div class="col ttt-default-margin">
-    <div class="text-center">
-      <button class="ttt-start-button" mat-button mat-raised-button (click)="goToMainMenu()">MAIN MENU</button>
-      <button class="ttt-start-button" mat-button mat-raised-button>NEW GAME</button>
-    </div>
+<div class="d-flex flex-column align-items-center">
+  <div>
+    <button class="text-uppercase m-1" mat-button mat-raised-button color="primary" (click)="goToMainMenu()">Main menu</button>
+    <button class="text-uppercase m-1" mat-button mat-raised-button color="primary" (click)="startNewGame()">New game</button>
   </div>
-</div>
-<div class="col ttt-default-margin">
-  <div class="text-center">
-    <app-current-player-panel [currentPlayer]="currentPlayer"></app-current-player-panel>
-  </div>
-</div>
-<div class="col ttt-default-margin">
-  <div class="d-flex justify-content-around">
-    <div class="ttt-play-field" [class.ttt-events-none]="this.processing">
-      <div class="ttt-play-field-line d-flex mr-auto" *ngFor="let line of this.field; index as x">
-        <app-block *ngFor="let block of line; index as y" (click)="doMotion(x,y)" [block]="block" [class.ttt-events-none]="block"></app-block>
-      </div>
+  <app-current-player-panel [currentPlayer]="currentPlayer"></app-current-player-panel>
+  <div [class.ttt-events-none]="this.processing">
+    <div class="d-flex" *ngFor="let line of this.field; index as x">
+      <app-block *ngFor="let block of line; index as y" (click)="doMotion(x,y)" [block]="block" [class.ttt-events-none]="block"></app-block>
     </div>
   </div>
 </div>

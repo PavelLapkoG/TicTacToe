@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {GAME_PLAYER} from '../play-game/play-game.domain.component';
+import { GAME_PLAYER } from '../play-game/play-game.domain.component';
 
 @Component({
   selector: 'app-current-player-panel',
@@ -13,11 +13,11 @@ export class CurrentPlayerPanelComponent {
 
   constructor() { }
 
-  public isFirstCurrentPlayer(): boolean {
+  public get isFirstCurrentPlayer(): boolean {
     return this.currentPlayer === GAME_PLAYER.FIRST;
   }
 
-  public isSecondCurrentPlayer(): boolean {
+  public get isSecondCurrentPlayer(): boolean {
     return this.currentPlayer === GAME_PLAYER.SECOND;
   }
 

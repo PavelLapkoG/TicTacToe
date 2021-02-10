@@ -1,5 +1,5 @@
 export enum SETTINGS_DIALOG_TYPE {
-  START,
+  START = 1,
   END,
 }
 
@@ -10,7 +10,7 @@ export enum SETTINGS_DIALOG_WINNER {
 }
 
 export enum GAME_PLAYER {
-  FIRST,
+  FIRST = 1,
   SECOND,
 }
 
