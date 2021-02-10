@@ -1,0 +1,31 @@
+<ng-template [ngIf]="isStartType()">
+  <div mat-dialog-title>
+    <h6 class="text-uppercase">Choose field size</h6>
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input type="number" placeholder="Dimension of the field" matInput [formControl]="sizeControl">
+      <mat-error *ngIf="sizeControl.hasError('max')">Max value is {{fieldMaxSize}}</mat-error>
+      <mat-error *ngIf="sizeControl.hasError('min')">Min value is {{fieldMinSize}}</mat-error>
+      <mat-error *ngIf="sizeControl.hasError('required')">Dimension is <strong>required</strong></mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button class="text-uppercase" mat-button [mat-dialog-close]="sizeControl.value" [disabled]="sizeControl.invalid">Play</button>
+    <button class="text-uppercase" mat-button (click)="goToMainMenu()">Go to main menu</button>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="isEndType()">
+  <div mat-dialog-title>
+    <h6 class="text-uppercase">The end</h6>
+  </div>
+  <div mat-dialog-content>
+    <span>DRAW!</span>
+    <span class="ttt-player-1">PLAYER 1 WINS!</span>
+    <span class="ttt-player-2">PLAYER 2 WINS!</span>
+  </div>
+  <div mat-dialog-actions>
+    <button class="text-uppercase" mat-button (click)="data.type = 1">PLAY AGAIN</button>
+  </div>
+</ng-template>

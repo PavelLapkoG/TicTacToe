@@ -1,0 +1,11 @@
+<div class="ttt-player-panel" [ngSwitch]="currentPlayer">
+  <div *ngSwitchCase="true" class="ttt-player-1">
+  <mat-icon class="ttt-vertical-align">close</mat-icon>
+  <span class="ttt-vertical-align">PLAYER 1</span>
+  </div>
+  <div *ngSwitchCase="false" class="ttt-player-2">
+    <mat-icon class="ttt-vertical-align">radio_button_unchecked</mat-icon>
+    <span class="ttt-vertical-align">PLAYER 2</span>
+  </div>
+</div>
+

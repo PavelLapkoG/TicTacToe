@@ -1,0 +1,11 @@
+@import '../../../styles';
+
+.ttt-player-panel {
+  margin: $ttt-default-size / 4;
+
+  .ttt-vertical-align {
+    vertical-align: middle;
+    margin: $ttt-default-size /4 0;
+  }
+}
+
