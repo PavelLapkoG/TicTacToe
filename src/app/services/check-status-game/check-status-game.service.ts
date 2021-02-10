@@ -5,10 +5,10 @@ export class CheckStatusGameService {
 
   constructor() { }
 
-  fieldSize: number;
+  private fieldSize: number | undefined;
   patternWin = [0, /(1){5}/, /(2){5}/, /[01]*7[01]*/, /[02]*7[02]*/];
 
-  checkStatus (x: number, y: number, fieldArray: Array<any>) {
+  public checkStatus(x: number, y: number, fieldArray: Array<any>): boolean {
     this.fieldSize = fieldArray.length;
 
     const motion: string = fieldArray[x][y];

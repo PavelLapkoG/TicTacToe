@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { StartSettingsDialogComponent } from '../../components/start-settings-dialog/start-settings-dialog.component';
-import { CheckStatusGameService } from '../../services/check-status-game/check-status-game.service';
-import { Game } from '../../game';
-import { MatDialog } from '@angular/material/dialog';
-import { SETTINGS_DIALOG_TYPE, SETTINGS_DIALOG_WINNER } from './play-game.domain.component';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {StartSettingsDialogComponent} from '../../components/start-settings-dialog/start-settings-dialog.component';
+import {CheckStatusGameService} from '../../services/check-status-game/check-status-game.service';
+import {MatDialog} from '@angular/material/dialog';
+import {GAME_PLAYER, SETTINGS_DIALOG_TYPE, SETTINGS_DIALOG_WINNER} from './play-game.domain.component';
 
 @Component({
   selector: 'app-play-game',
@@ -14,12 +13,13 @@ import { SETTINGS_DIALOG_TYPE, SETTINGS_DIALOG_WINNER } from './play-game.domain
 
 export class PlayGameComponent {
 
-  public game: Game;
+  public field: number[][] |undefined;
+  public processing: boolean | undefined;
+  public currentPlayer: GAME_PLAYER | undefined;
 
   constructor( private router: Router,
                public settingsDialog: MatDialog,
                private checkService: CheckStatusGameService) {
-    this.game = new Game();
     this.openSettingDialog(SETTINGS_DIALOG_TYPE.START);
   }
 
@@ -27,43 +27,33 @@ export class PlayGameComponent {
     this.router.navigateByUrl('/');
   }
 
-  /* start game function */
+  // Start game function
   private startGame(size: number): void {
-    this.game.field = [];
-    this.game.addField(this.formFieldsArray(size));
+    this.field = [];
+    this.field = this.formFieldsArray(size);
+    this.currentPlayer = GAME_PLAYER.FIRST;
   }
 
-  /* create matrix of game field */
-  private formFieldsArray(size: number): any {
-    const fieldArray = [];
-    for (let i = 0; i < size; i++) {
-      const lineArray = [];
-      for (let j = 0; j < size; j++) {
-        lineArray.push(0);
-      }
-      fieldArray.push(lineArray);
-    }
+  // Create matrix of game field
+  private formFieldsArray(size: number): number[][] {
+    const fieldArray = Array(size).fill(null).map(() => Array(size));
     return fieldArray;
   }
 
-  /* player's step function */
-  public motion(x: number, y: number): void {
+  // Player's step function
+  public doMotion(x: number, y: number): void {
+    this.processing = true;
 
-    this.game.loading = true;
-    if (!this.game.field[x][y]) {
-      this.game.field[x][y] =  this.game.currentPlayer ? 1 : 2;
+    if (!this.field[x][y]) {
+      this.field[x][y] = this.currentPlayer === GAME_PLAYER.FIRST ? 1 : 2;
     }
-    this.game.currentPlayer = !this.game.currentPlayer;
-    this.game.totalCells--;
-    this.checkGameStatus(x, y);
-    this.game.loading = false;
-  }
 
-  /* check game status with help of checkService*/
-  private checkGameStatus(x: number, y: number): void {
-    if (!this.checkService.checkStatus(x, y, this.game.field) || this.game.totalCells === 0) {
-      this.openSettingDialog(SETTINGS_DIALOG_TYPE.END, this.game.identifyWinner());
+    if (!this.checkService.checkStatus(x, y, this.field)) {
+      this.openSettingDialog(SETTINGS_DIALOG_TYPE.END, this.identifyWinner());
+    } else {
+      this.currentPlayer = this.currentPlayer === GAME_PLAYER.FIRST ? GAME_PLAYER.SECOND : GAME_PLAYER.FIRST;
     }
+    this.processing = false;
   }
 
   private openSettingDialog(type: SETTINGS_DIALOG_TYPE, winner?: SETTINGS_DIALOG_WINNER): void {
@@ -75,7 +65,15 @@ export class PlayGameComponent {
         winner,
       }
     });
-    dialog.afterClosed().subscribe((result) => this.startGame(result));
+    dialog.afterClosed().subscribe((result: number) => this.startGame(result));
+  }
+
+  private identifyWinner(): SETTINGS_DIALOG_WINNER {
+    if (this.currentPlayer === GAME_PLAYER.FIRST) {
+      return SETTINGS_DIALOG_WINNER.FIRST_PLAYER;
+    } else if (this.currentPlayer === GAME_PLAYER.SECOND) {
+      return SETTINGS_DIALOG_WINNER.SECOND_PLAYER;
+    }
   }
 
 }

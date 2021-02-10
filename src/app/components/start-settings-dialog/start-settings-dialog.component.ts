@@ -1,9 +1,9 @@
-import { Inject, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Constants } from '../../constants';
-import { FormControl, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {ISettinsDialogData, SETTINGS_DIALOG_TYPE} from '../play-game/play-game.domain.component';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Constants} from '../../constants';
+import {FormControl, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ISettingsDialogData, SETTINGS_DIALOG_TYPE, SETTINGS_DIALOG_WINNER} from '../play-game/play-game.domain.component';
 
 @Component({
   selector: 'app-start-settings-dialog',
@@ -13,7 +13,7 @@ import {ISettinsDialogData, SETTINGS_DIALOG_TYPE} from '../play-game/play-game.d
 export class StartSettingsDialogComponent implements OnInit {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: ISettinsDialogData,
+    @Inject(MAT_DIALOG_DATA) private data: ISettingsDialogData,
     public dialogRef: MatDialogRef<StartSettingsDialogComponent>,
     private router: Router
   ) {}
@@ -38,6 +38,18 @@ export class StartSettingsDialogComponent implements OnInit {
 
   public isEndType(): boolean {
     return this.data.type === SETTINGS_DIALOG_TYPE.END;
+  }
+
+  public isFirstPlayerWins(): boolean {
+    return !!this.data.winner && this.data.winner === SETTINGS_DIALOG_WINNER.FIRST_PLAYER;
+  }
+
+  public isSecondPlayerWins(): boolean {
+    return this.data.winner && this.data.winner === SETTINGS_DIALOG_WINNER.SECOND_PLAYER;
+  }
+
+  public isDraw(): boolean {
+    return this.data.winner && this.data.winner === SETTINGS_DIALOG_WINNER.DRAW;
   }
 
   public goToMainMenu(): void {

@@ -8,18 +8,14 @@
 </div>
 <div class="col ttt-default-margin">
   <div class="text-center">
-    <app-current-player-panel [currentPlayer]="game.currentPlayer"></app-current-player-panel>
+    <app-current-player-panel [currentPlayer]="currentPlayer"></app-current-player-panel>
   </div>
 </div>
 <div class="col ttt-default-margin">
   <div class="d-flex justify-content-around">
-    <div class="ttt-play-field" [ngClass]="{'ttt-events-none': game.loading}">
-      <div class="ttt-play-field-line d-flex mr-auto" *ngFor="let line of game.field; index as x">
-      <app-block *ngFor="let block of line; index as y"
-                 (click)="motion(x,y)"
-                 [label]="block"
-                 [ngClass]="{'ttt-events-none': !!block}">
-      </app-block>
+    <div class="ttt-play-field" [class.ttt-events-none]="this.processing">
+      <div class="ttt-play-field-line d-flex mr-auto" *ngFor="let line of this.field; index as x">
+        <app-block *ngFor="let block of line; index as y" (click)="doMotion(x,y)" [block]="block" [class.ttt-events-none]="block"></app-block>
       </div>
     </div>
   </div>

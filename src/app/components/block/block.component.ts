@@ -1,17 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-block',
   templateUrl: './block.component.html',
   styleUrls: ['./block.component.scss']
 })
-export class BlockComponent implements OnInit {
+export class BlockComponent {
 
-  @Input() label;
+  @Input()
+  public block: number | undefined;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

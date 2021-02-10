@@ -10,7 +10,6 @@ import {MatSelectModule} from '@angular/material/select';
 import {CheckStatusGameService} from './services/check-status-game/check-status-game.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {TicTacToeComponent} from './components/tic-tac-toe/tic-tac-toe.component';
 import {CurrentPlayerPanelComponent} from './components/current-player-panel/current-player-panel.component';
 import {BlockComponent} from './components/block/block.component';
 import {StartPageComponent} from './components/start-page/start-page.component';
@@ -26,7 +25,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    TicTacToeComponent,
     StartPageComponent,
     PlayGameComponent,
     StartSettingsDialogComponent,

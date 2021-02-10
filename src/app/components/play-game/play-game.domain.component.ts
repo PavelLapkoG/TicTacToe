@@ -4,13 +4,19 @@ export enum SETTINGS_DIALOG_TYPE {
 }
 
 export enum SETTINGS_DIALOG_WINNER {
-  FIRST_PLAYER,
+  FIRST_PLAYER = 1,
   SECOND_PLAYER,
   DRAW,
 }
 
-export interface ISettinsDialogData {
+export enum GAME_PLAYER {
+  FIRST,
+  SECOND,
+}
+
+
+export interface ISettingsDialogData {
   type: SETTINGS_DIALOG_TYPE;
-  winner: SETTINGS_DIALOG_WINNER;
+  winner?: SETTINGS_DIALOG_WINNER;
 }
 

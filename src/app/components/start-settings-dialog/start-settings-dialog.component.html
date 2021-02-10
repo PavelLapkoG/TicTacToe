@@ -21,11 +21,11 @@
     <h6 class="text-uppercase">The end</h6>
   </div>
   <div mat-dialog-content>
-    <span>DRAW!</span>
-    <span class="ttt-player-1">PLAYER 1 WINS!</span>
-    <span class="ttt-player-2">PLAYER 2 WINS!</span>
+    <span class="ttt-player-1 text-uppercase" *ngIf="isFirstPlayerWins()">Player 1 wins</span>
+    <span class="ttt-player-2 text-uppercase" *ngIf="isSecondPlayerWins()">Player 2 wins</span>
+    <span class="text-uppercase" *ngIf="isDraw()">Draw</span>
   </div>
   <div mat-dialog-actions>
-    <button class="text-uppercase" mat-button (click)="data.type = 1">PLAY AGAIN</button>
+    <button class="text-uppercase" mat-button (click)="data.type = 1">Play again</button>
   </div>
 </ng-template>
