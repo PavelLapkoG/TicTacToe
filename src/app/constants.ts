@@ -1,4 +1,2 @@
-export class Constants {
-  public static get FIELD_MAX_SIZE(): number { return 100; }
-  public static get FIELD_MIN_SIZE(): number { return 7; }
-}
+export const FIELD_MAX_SIZE: number = 100;
+export const FIELD_MIN_SIZE: number = 7;

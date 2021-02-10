@@ -1,9 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {Constants} from '../../constants';
-import {FormControl, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ISettingsDialogData, SETTINGS_DIALOG_TYPE, SETTINGS_DIALOG_WINNER} from '../play-game/play-game.domain.component';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FIELD_MAX_SIZE, FIELD_MIN_SIZE } from '../../constants';
+import { FormControl, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ISettingsDialogData, SETTINGS_DIALOG_TYPE, SETTINGS_DIALOG_WINNER } from '../play-game/play-game.domain.component';
 
 @Component({
   selector: 'app-start-settings-dialog',
@@ -24,8 +24,8 @@ export class StartSettingsDialogComponent implements OnInit {
   public sizeControl: FormControl | undefined;
 
   public ngOnInit(): void {
-    this.fieldMaxSize = Constants.FIELD_MAX_SIZE;
-    this.fieldMinSize = Constants.FIELD_MIN_SIZE;
+    this.fieldMaxSize = FIELD_MAX_SIZE;
+    this.fieldMinSize = FIELD_MIN_SIZE;
     this.sizeControl = new FormControl('', [
       Validators.max(this.fieldMaxSize),
       Validators.min(this.fieldMinSize),
